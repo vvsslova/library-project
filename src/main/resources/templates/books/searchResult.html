@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/books/searchBook}">
+    <label for="title">Введите поисковой запрос: </label>
+    <input type="text" id="title" name="title"/>
+    <br/>
+    <input type="submit" value="Искать!"/>
+</form>
+<br>
+<div th:if="${fountBooks.size() == 0}">
+    <p3>Книг не найдено</p3>
+</div>
+<div th:if="${fountBooks.size() > 0}">
+    <ul>
+        <li th:each="book : ${fountBooks}">
+            <div th:if="${book.getLentPerson() == null}">
+                <p><span th:text="${book.title + ', ' + book.author + ', ' + book.yearOfPublication}"></span></p>
+                <p>Эту книгу пока никто не взял.</p>
+            </div>
+            <div th:if="${book.getLentPerson() != null}">
+                <p><span th:text="${book.title + ', ' + book.author + ', ' + book.yearOfPublication}"></span></p>
+                <p>Эта книга сейчас у: <span th:text="${book.getLentPerson().name}"></span></p>
+            </div>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

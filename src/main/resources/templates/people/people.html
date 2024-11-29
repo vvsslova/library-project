@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Список зарегистрированных читателей</title>
+</head>
+<body>
+<div th:each="person : ${people}">
+    <a th:href="@{/people/{id}(id=${person.getId()})}"
+       th:text="${person.getName() + ', ' + person.getYearOfBirth()}">user</a>
+</div>
+<hr/>
+<a href="/people/new">Добавить нового читателя</a>
+<br>
+<br>
+<a style="color:deeppink" href="/">Вернуться на главную страницу</a>
+</body>
+</html>

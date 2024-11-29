@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library card</title>
+</head>
+<body>
+<h2 th:text="${person.getName() + ', '+ person.getYearOfBirth()}">VALUE</h2>
+<h3>Список взятых книг</h3>
+<div th:if="${books.size() == 0}">
+    <p3>Читатель пока не взял ни одной книги.</p3>
+</div>
+<div th:if="${books.size() > 0}">
+    <ul>
+        <li th:each="book : ${books}">
+            <div th:if="${book.isDeadlineCheckResult() == false}">
+                <a th:href="@{/books/{id}(id=${book.getId()})}"
+                   th:text="${book.title + ', '+ book.author + ', '+ book.yearOfPublication}"></a>
+            </div>
+            <div th:if="${book.isDeadlineCheckResult() == true}">
+                <a style="color:red" th:href="@{/books/{id}(id=${book.getId()})}"
+                   th:text="${book.title + ', '+ book.author + ', '+ book.yearOfPublication}"></a>
+            </div>
+        </li>
+    </ul>
+</div>
+<br>
+<br>
+<a style="color:deeppink" th:href="@{/people/{id}(id=${person.getId()})}">Вернуться на страницу читателя</a>
+</body>
+</html>
