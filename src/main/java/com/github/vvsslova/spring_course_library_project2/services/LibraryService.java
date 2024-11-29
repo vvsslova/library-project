@@ -61,6 +61,10 @@ public class LibraryService {
     @Transactional
     public void returnBook(int bookId) {
         Optional<Book> fontBook = bookRepository.findById(bookId);
-        fontBook.ifPresent(book -> book.setLentPerson(null));
+        if (fontBook.isPresent()){
+            fontBook.get().setLentPerson(null);
+            fontBook.get().setLendDate(null);
+        }
+//        fontBook.ifPresent(book -> book.setLentPerson(null));
     }
 }
