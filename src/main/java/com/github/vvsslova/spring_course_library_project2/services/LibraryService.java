@@ -65,6 +65,5 @@ public class LibraryService {
             fontBook.get().setLentPerson(null);
             fontBook.get().setLendDate(null);
         }
-//        fontBook.ifPresent(book -> book.setLentPerson(null));
     }
 }
